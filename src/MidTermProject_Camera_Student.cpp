@@ -58,6 +58,7 @@ int main(int argc, const char *argv[])
 
         //// STUDENT ASSIGNMENT
         //// TASK MP.1 -> replace the following code with ring buffer of size dataBufferSize
+        //start?
 
         // push image into data frame buffer
         DataFrame frame;
