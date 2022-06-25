@@ -67,10 +67,8 @@ int main(int argc, const char *argv[])
 
         if(dataBuffer.size() > dataBufferSize)
         {
-            cout << dataBuffer.size() << endl;
-            dataBuffer = vector<DataFrame>(dataBuffer.begin()+1, dataBuffer.end());
-            cout << dataBuffer.size() << "buffer completed " << endl;
-
+            dataBuffer = vector<DataFrame>(dataBuffer.end()-dataBufferSize, dataBuffer.end());
+            
         }
 
         //// EOF STUDENT ASSIGNMENT
@@ -80,20 +78,42 @@ int main(int argc, const char *argv[])
 
         // extract 2D keypoints from current image
         vector<cv::KeyPoint> keypoints; // create empty feature list for current image
-        string detectorType = "SHITOMASI";
+        //string detectorType = "SHITOMASI";
+        string detectorType = "HARRIS";
+        //string detectorType = "FAST";
+        //string detectorType = "BRISK";
+        //string detectorType = "ORB";
+        //string detectorType = "AKAZE";
+        //string detectorType = "SIFT";
+
 
         //// STUDENT ASSIGNMENT
         //// TASK MP.2 -> add the following keypoint detectors in file matching2D.cpp and enable string-based selection based on detectorType
         //// -> HARRIS, FAST, BRISK, ORB, AKAZE, SIFT
+        /*
+        void detKeypointsHarris(std::vector<cv::KeyPoint> &keypoints, cv::Mat &img, bool bVis=false);
+        void detKeypointsShiTomasi(std::vector<cv::KeyPoint> &keypoints, cv::Mat &img, bool bVis=false);
+        void detKeypointsModern(std::vector<cv::KeyPoint> &keypoints, cv::Mat &img, std::string detectorType, bool bVis=false);
+        void descKeypoints(std::vector<cv::KeyPoint> &keypoints, cv::Mat &img, cv::Mat &descriptors, std::string descriptorType);
+        void matchDescriptors(std::vector<cv::KeyPoint> &kPtsSource, std::vector<cv::KeyPoint> &kPtsRef, cv::Mat &descSource, cv::Mat &descRef,
+                        std::vector<cv::DMatch> &matches, std::string descriptorType, std::string matcherType, std::string selectorType);
+        */
+        bool bVis = false;
 
         if (detectorType.compare("SHITOMASI") == 0)
         {
-            detKeypointsShiTomasi(keypoints, imgGray, false);
+            detKeypointsShiTomasi(keypoints, imgGray, bVis);
+        }
+        else if(detectorType.compare("HARRIS") == 0)
+        {
+            detKeypointsHarris(keypoints, imgGray, bVis);    
         }
         else
         {
-            //...
+            //detKeypointsModern(keypoints, imgGray, detectorType, bVis);
         }
+            
+        
         //// EOF STUDENT ASSIGNMENT
 
         //// STUDENT ASSIGNMENT
