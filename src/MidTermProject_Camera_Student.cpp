@@ -58,12 +58,20 @@ int main(int argc, const char *argv[])
 
         //// STUDENT ASSIGNMENT
         //// TASK MP.1 -> replace the following code with ring buffer of size dataBufferSize
-        //start?
+        
 
         // push image into data frame buffer
         DataFrame frame;
         frame.cameraImg = imgGray;
         dataBuffer.push_back(frame);
+
+        if(dataBuffer.size() > dataBufferSize)
+        {
+            cout << dataBuffer.size() << endl;
+            dataBuffer = vector<DataFrame>(dataBuffer.begin()+1, dataBuffer.end());
+            cout << dataBuffer.size() << "buffer completed " << endl;
+
+        }
 
         //// EOF STUDENT ASSIGNMENT
         cout << "#1 : LOAD IMAGE INTO BUFFER done" << endl;
