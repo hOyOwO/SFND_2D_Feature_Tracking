@@ -70,6 +70,7 @@ int main(int argc, const char *argv[])
             dataBuffer = vector<DataFrame>(dataBuffer.end()-dataBufferSize, dataBuffer.end());
             
         }
+        cout << imgIndex << "/" << imgEndIndex << endl;
 
         //// EOF STUDENT ASSIGNMENT
         cout << "#1 : LOAD IMAGE INTO BUFFER done" << endl;
@@ -79,8 +80,8 @@ int main(int argc, const char *argv[])
         // extract 2D keypoints from current image
         vector<cv::KeyPoint> keypoints; // create empty feature list for current image
         //string detectorType = "SHITOMASI";
-        string detectorType = "HARRIS";
-        //string detectorType = "FAST";
+        //string detectorType = "HARRIS";
+        string detectorType = "FAST";
         //string detectorType = "BRISK";
         //string detectorType = "ORB";
         //string detectorType = "AKAZE";
@@ -90,14 +91,7 @@ int main(int argc, const char *argv[])
         //// STUDENT ASSIGNMENT
         //// TASK MP.2 -> add the following keypoint detectors in file matching2D.cpp and enable string-based selection based on detectorType
         //// -> HARRIS, FAST, BRISK, ORB, AKAZE, SIFT
-        /*
-        void detKeypointsHarris(std::vector<cv::KeyPoint> &keypoints, cv::Mat &img, bool bVis=false);
-        void detKeypointsShiTomasi(std::vector<cv::KeyPoint> &keypoints, cv::Mat &img, bool bVis=false);
-        void detKeypointsModern(std::vector<cv::KeyPoint> &keypoints, cv::Mat &img, std::string detectorType, bool bVis=false);
-        void descKeypoints(std::vector<cv::KeyPoint> &keypoints, cv::Mat &img, cv::Mat &descriptors, std::string descriptorType);
-        void matchDescriptors(std::vector<cv::KeyPoint> &kPtsSource, std::vector<cv::KeyPoint> &kPtsRef, cv::Mat &descSource, cv::Mat &descRef,
-                        std::vector<cv::DMatch> &matches, std::string descriptorType, std::string matcherType, std::string selectorType);
-        */
+        
         bool bVis = false;
 
         if (detectorType.compare("SHITOMASI") == 0)
@@ -110,7 +104,7 @@ int main(int argc, const char *argv[])
         }
         else
         {
-            //detKeypointsModern(keypoints, imgGray, detectorType, bVis);
+            detKeypointsModern(keypoints, imgGray, detectorType, bVis);
         }
             
         
@@ -121,10 +115,22 @@ int main(int argc, const char *argv[])
 
         // only keep keypoints on the preceding vehicle
         bool bFocusOnVehicle = true;
-        cv::Rect vehicleRect(535, 180, 180, 150);
+        cv::Rect vehicleRect(535, 180, 180, 150); //cx = 535, cy = 180, w = 180, h = 150
         if (bFocusOnVehicle)
         {
-            // ...
+            vector<cv::KeyPoint> keypoints_cropped;
+            for (auto it = keypoints.begin(); it != keypoints.end(); ++it)
+            {
+                int x = it->pt.x;
+                int y = it->pt.y;
+                if( (x > 535 && x < 535+180) 
+                && (y > 180 && y < 180+150) )
+                {
+                    keypoints_cropped.push_back(*it);
+                }
+                
+            }
+            keypoints = keypoints_cropped;
         }
 
         //// EOF STUDENT ASSIGNMENT
