@@ -26,7 +26,7 @@ void matchDescriptors(std::vector<cv::KeyPoint> &kPtsSource, std::vector<cv::Key
             descRef.convertTo(descRef, CV_32F);
         }
         matcher = cv::DescriptorMatcher::create(cv::DescriptorMatcher::FLANNBASED);
-        cout << "FLANN matching" << endl;
+        //cout << "FLANN matching" << endl;
         
     }
 
@@ -147,6 +147,7 @@ void detKeypointsModern(vector<cv::KeyPoint> &keypoints, cv::Mat &img, string de
     else if (detectorType.compare("SIFT") == 0)
     {
         detector = cv::SIFT::create();
+    
     }
     else
     {

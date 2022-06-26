@@ -41,7 +41,14 @@ int main(int argc, const char *argv[])
     bool bVis = false;            // visualize results
 
     /* MAIN LOOP OVER ALL IMAGES */
-
+    vector<int> NumberOfKeypoints;
+    vector<string> DetectorTypeVector = {"SHITOMASI", "HARRIS", "FAST", "BRISK", "ORB", "AKAZE", "SIFT"};
+    string detectorType;
+    /*for (int m = 0; m < DetectorTypeVector.size(); m++)
+    {
+        detectorType = DetectorTypeVector[m];
+    
+*/
     for (size_t imgIndex = 0; imgIndex <= imgEndIndex - imgStartIndex; imgIndex++)
     {
         /* LOAD IMAGE INTO BUFFER */
@@ -71,7 +78,7 @@ int main(int argc, const char *argv[])
             
         }
         cout << imgIndex << "/" << imgEndIndex << endl;
-        cout << dataBuffer.size() << endl;
+        //cout << dataBuffer.size() << endl;
 
         //// EOF STUDENT ASSIGNMENT
         cout << "#1 : LOAD IMAGE INTO BUFFER done" << endl;
@@ -82,11 +89,11 @@ int main(int argc, const char *argv[])
         vector<cv::KeyPoint> keypoints; // create empty feature list for current image
         //string detectorType = "SHITOMASI";
         //string detectorType = "HARRIS";
-        string detectorType = "FAST";
+        //string detectorType = "FAST";
         //string detectorType = "BRISK";
         //string detectorType = "ORB";
         //string detectorType = "AKAZE";
-        //string detectorType = "SIFT";
+        string detectorType = "SIFT";
 
 
         //// STUDENT ASSIGNMENT
@@ -107,6 +114,7 @@ int main(int argc, const char *argv[])
         {
             detKeypointsModern(keypoints, imgGray, detectorType, bVis);
         }
+        
             
         
         //// EOF STUDENT ASSIGNMENT
@@ -133,6 +141,8 @@ int main(int argc, const char *argv[])
             }
             keypoints = keypoints_cropped;
         }
+        cout << "detector Type: "<< detectorType << ", # of key points: " << keypoints.size() << "  (after cropped)"<<endl;
+        NumberOfKeypoints.push_back(keypoints.size());
 
         //// EOF STUDENT ASSIGNMENT
 
@@ -206,7 +216,7 @@ int main(int argc, const char *argv[])
             cout << "#4 : MATCH KEYPOINT DESCRIPTORS done" << endl;
 
             // visualize matches between current and previous image
-            bVis = true;
+            bVis = false;
             if (bVis)
             {
                 cv::Mat matchImg = ((dataBuffer.end() - 1)->cameraImg).clone();
@@ -226,6 +236,13 @@ int main(int argc, const char *argv[])
         }
 
     } // eof loop over all images
-
+    cout << "detectorType: "<< detectorType << endl;
+    for (int z = 0; z < NumberOfKeypoints.size() ; z++)
+    {
+        cout << NumberOfKeypoints[z] << endl;
+    }
+    
+    //}  // detector series end
     return 0;
+    
 }
