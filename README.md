@@ -46,6 +46,7 @@ Then, add *C:\vcpkg\installed\x64-windows\bin* and *C:\vcpkg\installed\x64-windo
 ## Midterm
 
 1. Number of keypoints
+
 | Detector | SHITOMASI | HARRIS | FAST | BRISK | ORB | AKAZE | SIFT | 
 | :---:    | :---:  | :---:  | :---:  |  :---: | :---:  | :---:  | :---:  | 
 | image0 | 122 | 17 | 112 | 201 | 85 | 156 | 130 | 
@@ -60,6 +61,7 @@ Then, add *C:\vcpkg\installed\x64-windows\bin* and *C:\vcpkg\installed\x64-windo
 | image9 | 108 | 31 | 99 | 174 | 116 | 165 | 131 | 
 
 2. Number of matched keypoints
+
 | Detector, Descriptor | BRISK | BRIEF |   ORB  |  FREAK | AKAZE | SIFT  | 
 | :---:               | :---:  | :---: | :---:  |  :---: | :---: | :---: | 
 | SHITOMASI           | 680    | 804    | 755    | 566    | X    | 910   |
@@ -71,6 +73,7 @@ Then, add *C:\vcpkg\installed\x64-windows\bin* and *C:\vcpkg\installed\x64-windo
 | SIFT                | 523    | 605    | X      | 500    | X    | 803   |
 
 3. runtime
+
 | Detector, Descriptor | BRISK | BRIEF |   ORB  |  FREAK | AKAZE | SIFT  | 
 | :---:               | :---:  | :---: | :---:  |  :---: | :---: | :---: | 
 | SHITOMASI           | 6.4    | 2.4    | 3.0    | 9.0    | X    | 8.2   |
