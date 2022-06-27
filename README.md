@@ -43,8 +43,9 @@ Then, add *C:\vcpkg\installed\x64-windows\bin* and *C:\vcpkg\installed\x64-windo
 4. Run it: `./2D_feature_tracking`.
 
 
-## Performane evaluation 
+## Midterm
 
+1. Number of keypoints
 | Detector | SHITOMASI | HARRIS | FAST | BRISK | ORB | AKAZE | SIFT | 
 | :---:    | :---:  | :---:  | :---:  |  :---: | :---:  | :---:  | :---:  | 
 | image0 | 122 | 17 | 112 | 201 | 85 | 156 | 130 | 
@@ -57,3 +58,29 @@ Then, add *C:\vcpkg\installed\x64-windows\bin* and *C:\vcpkg\installed\x64-windo
 | image7 | 120 | 28 | 106 | 196 | 117 | 168 | 141 | 
 | image8 | 111 | 25 | 110 | 197 | 116 | 168 | 150 | 
 | image9 | 108 | 31 | 99 | 174 | 116 | 165 | 131 | 
+
+2. Number of matched keypoints
+| Detector, Descriptor | BRISK | BRIEF |   ORB  |  FREAK | AKAZE | SIFT  | 
+| :---:               | :---:  | :---: | :---:  |  :---: | :---: | :---: | 
+| SHITOMASI           | 680    | 804    | 755    | 566    | X    | 910   |
+| HARRIS              | 131    | 164    | 165    | 131    | X    | 170   |
+| FAST                | 609    | 698    | 661    | 506    | X    | 807   |
+| BRISK               | 1017   | 1045   | 741    | 859    | X    | 1282  |
+| ORB                 | 629    | 446    | 495    | 334    | X    | 733   |
+| AKAZE               | 1060   | 1065   | 885    | 924    | 1117 | 1219  |
+| SIFT                | 523    | 605    | X      | 500    | X    | 803   |
+
+3. runtime
+| Detector, Descriptor | BRISK | BRIEF |   ORB  |  FREAK | AKAZE | SIFT  | 
+| :---:               | :---:  | :---: | :---:  |  :---: | :---: | :---: | 
+| SHITOMASI           | 6.4    | 2.4    | 3.0    | 9.0    | X    | 8.2   |
+| HARRIS              | 6.7    | 2.6    | 3.3    | 9.2    | X    | 8.4   |
+| FAST                | 4.5    | 0.5    | 1.2    | 7.1    | X    | 6.8   |
+| BRISK               | 10.4   | 6.4    | 8.4    | 13.0   | X    | 15.8  |
+| ORB                 | 5.5    | 1.5    | 3.8    | 8.2    | X    | 12.1   |
+| AKAZE               | 14.3   | 10.1   | 11.8   | 16.9   | 20.0 | 18.2   |
+| SIFT                | 34.9   | 30.9   | X      | 37.7   | X    | 60.8   |
+
+4. TOP3 detector/descriptor combination
+- BRISK/BRIEF(1045, 6.4s), FAST/SIFT (807, 6.8s), SHITOMASI/BRIEF(804, 2.4s)
+- I chose the case where there are many matched numbers in less than 10 seconds.
