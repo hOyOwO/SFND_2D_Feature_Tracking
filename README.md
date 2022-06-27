@@ -41,3 +41,19 @@ Then, add *C:\vcpkg\installed\x64-windows\bin* and *C:\vcpkg\installed\x64-windo
 2. Make a build directory in the top level directory: `mkdir build && cd build`
 3. Compile: `cmake .. && make`
 4. Run it: `./2D_feature_tracking`.
+
+
+## Performane evaluation 
+
+| Detector | SHITOMASI | HARRIS | FAST | BRISK | ORB | AKAZE | SIFT | 
+| :---:    | :---:  | :---:  | :---:  |  :---: | :---:  | :---:  | :---:  | 
+| image0 | 122 | 17 | 112 | 201 | 85 | 156 | 130 | 
+| image1 | 117 | 14 | 109 | 207 | 100 | 149 | 127 | 
+| image2 | 122 | 18 | 116 | 214 | 104 | 152 | 118 | 
+| image3 | 117 | 20 | 115 | 204 | 110 | 146 | 133 | 
+| image4 | 115 | 25 | 111 | 214 | 106 | 157 | 133 | 
+| image5 | 112 | 39 | 115 | 212 | 121 | 160 | 135 | 
+| image6 | 112 | 17 | 107 | 213 | 127 | 168 | 132 | 
+| image7 | 120 | 28 | 106 | 196 | 117 | 168 | 141 | 
+| image8 | 111 | 25 | 110 | 197 | 116 | 168 | 150 | 
+| image9 | 108 | 31 | 99 | 174 | 116 | 165 | 131 | 
