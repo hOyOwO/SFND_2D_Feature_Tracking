@@ -147,14 +147,14 @@ void detKeypointsModern(vector<cv::KeyPoint> &keypoints, cv::Mat &img, string de
     else if (detectorType.compare("SIFT") == 0)
     {
         detector = cv::SIFT::create();
-    
     }
     else
     {
         cerr << detectorType << " is invalid detector type." << endl; 
     }
-
+    
     detector->detect(img, keypoints);
+    
 
     t = ((double)cv::getTickCount() - t) / cv::getTickFrequency();
     cout << detectorType << " detection with n=" << keypoints.size() << " keypoints in " << 1000 * t / 1.0 << " ms" << endl;

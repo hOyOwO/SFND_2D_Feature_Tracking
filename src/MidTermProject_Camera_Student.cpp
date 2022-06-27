@@ -43,12 +43,12 @@ int main(int argc, const char *argv[])
     /* MAIN LOOP OVER ALL IMAGES */
     vector<int> NumberOfKeypoints;
     vector<string> DetectorTypeVector = {"SHITOMASI", "HARRIS", "FAST", "BRISK", "ORB", "AKAZE", "SIFT"};
-    string detectorType;
-    /*for (int m = 0; m < DetectorTypeVector.size(); m++)
+    string detectorType = "SIFT";
+    for (int m = 0; m < DetectorTypeVector.size(); m++)
     {
         detectorType = DetectorTypeVector[m];
     
-*/
+
     for (size_t imgIndex = 0; imgIndex <= imgEndIndex - imgStartIndex; imgIndex++)
     {
         /* LOAD IMAGE INTO BUFFER */
@@ -93,7 +93,7 @@ int main(int argc, const char *argv[])
         //string detectorType = "BRISK";
         //string detectorType = "ORB";
         //string detectorType = "AKAZE";
-        string detectorType = "SIFT";
+        //string detectorType = "SIFT";
 
 
         //// STUDENT ASSIGNMENT
@@ -242,7 +242,7 @@ int main(int argc, const char *argv[])
         cout << NumberOfKeypoints[z] << endl;
     }
     
-    //}  // detector series end
+    }  // detector series end
     return 0;
     
 }
