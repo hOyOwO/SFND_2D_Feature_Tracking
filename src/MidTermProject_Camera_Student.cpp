@@ -55,7 +55,7 @@ int main(int argc, const char *argv[])
         detectorType = DetectorTypeVector[m];
         SumOfMatches = 0;
         
-        descriptorType = DescriptorTypeVector[0];
+        descriptorType = DescriptorTypeVector[0]; // to reduce for loop, choice descriptortype one by one
         double t_total = (double)cv::getTickCount();
 
         for (size_t imgIndex = 0; imgIndex <= imgEndIndex - imgStartIndex; imgIndex++)
@@ -75,12 +75,13 @@ int main(int argc, const char *argv[])
             //// STUDENT ASSIGNMENT
             //// TASK MP.1 -> replace the following code with ring buffer of size dataBufferSize
             
-
             // push image into data frame buffer
             DataFrame frame;
             frame.cameraImg = imgGray;
             dataBuffer.push_back(frame);
-
+            //if current buffer size > buffursize(=2), make new data buffer
+            //1, 2, 3 (before) --> 2, 3 (after)
+            //2, 3, 4 (before) --> 3, 4 (after)
             if(dataBuffer.size() > dataBufferSize)
             {
                 dataBuffer = vector<DataFrame>(dataBuffer.end()-dataBufferSize, dataBuffer.end());
@@ -103,11 +104,12 @@ int main(int argc, const char *argv[])
             //string detectorType = "ORB";
             //string detectorType = "AKAZE";
             //string detectorType = "SIFT";
+            //I declared detectorType by array (line 48, line 52)
 
 
             //// STUDENT ASSIGNMENT
             //// TASK MP.2 -> add the following keypoint detectors in file matching2D.cpp and enable string-based selection based on detectorType
-            //// -> HARRIS, FAST, BRISK, ORB, AKAZE, SIFT
+            //// -> SHITOMASI HARRIS, FAST, BRISK, ORB, AKAZE, SIFT
             
             bool bVis = false;
 
@@ -119,7 +121,7 @@ int main(int argc, const char *argv[])
             {
                 detKeypointsHarris(keypoints, imgGray, bVis);    
             }
-            else
+            else // when other detector type selected
             {
                 detKeypointsModern(keypoints, imgGray, detectorType, bVis);
             }
@@ -142,7 +144,7 @@ int main(int argc, const char *argv[])
                     int x = it->pt.x;
                     int y = it->pt.y;
                     if( (x > 535 && x < 535+180) 
-                    && (y > 180 && y < 180+150) )
+                    && (y > 180 && y < 180+150) ) // if points in vehicle rectangle keep. other discard points
                     {
                         keypoints_cropped.push_back(*it);
                     }
@@ -186,7 +188,7 @@ int main(int argc, const char *argv[])
             //string descriptorType = "FREAK";
             //string descriptorType = "AKAZE";
             //string descriptorType = "SIFT";
-            
+            //I declared descriptor Type by array (line 49)
             
 
             descKeypoints((dataBuffer.end() - 1)->keypoints, (dataBuffer.end() - 1)->cameraImg, descriptors, descriptorType);
